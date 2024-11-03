@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  ibeam:
+    image: voyz/ibeam
+    container_name: ibeam
+    env_file:
+      - env.list
+    volumes:
+      - ./tws/inputs:/srv/inputs
+    ports:
+      - 5003:5003
+      - 5004:5004
+    network_mode: bridge # Required due to clientportal.gw IP whitelist
+    restart: 'no' # Prevents IBEAM_MAX_FAILED_AUTH from being exceeded

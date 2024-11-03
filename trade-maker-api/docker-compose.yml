@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: projec_zero_trader_maker_app
+    ports:
+      - "80:80"
+    depends_on:
+      - mongo
+    volumes:
+      - mongo_data:/data/db
+
+  mongo:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27018:27018"
+    volumes:
+      - mongo_data:/data/db 
+
+volumes:
+  mongo_data:
