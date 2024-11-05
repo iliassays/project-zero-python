@@ -293,6 +293,11 @@ async def place_order_for_user(alert_item: AlertItem, user):
                 logging.info("trade already running with same alert side...")
                 return
 
+
+            if alert_item.signal in {event.get('signal') for event in user_trade["events"]}:
+                logging.info("Signal already executed...")
+                return
+
             user_trade = build_trade_events_from_alert(user_trade, alert_item)
 
             open_event = next((x for x in user_trade['events'] if x['status'] == 'open'), None)
@@ -395,8 +400,9 @@ def build_trade_events_from_alert(trade, alertItem):
     try:
         logging.info("Building trade events from alert...")
         profit_signal_names = ["TP1", "TP2", "TP3", 'TP4']
-        next_signal_should_be = determine_next_signal(trade, alertItem, profit_signal_names)
-        alertItem.signal = next_signal_should_be
+        
+        #next_signal_should_be = determine_next_signal(trade, alertItem, profit_signal_names)
+        #alertItem.signal = next_signal_should_be
         
         signal_handlers = {
             'TP1' : handle_tp1,
