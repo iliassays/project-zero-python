@@ -84,7 +84,7 @@ logging.basicConfig(level=logging.INFO)
 
 settings = Settings()
 mongo_uri = os.getenv("MONGO_URI")
-client = pymongo.MongoClient("mongodb://mongo:27017")
+client = pymongo.MongoClient(mongo_uri)
 #client = pymongo.MongoClient('mongodb://localhost:27017/')
 db = client['project_zero']
 running_trade_collection = db['running_trades']
