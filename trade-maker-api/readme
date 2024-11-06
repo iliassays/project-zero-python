@@ -1,0 +1,38 @@
+# COMING Soon. Just few frequently used commands
+
+
+pip install --no-cache-dir --upgrade -r requirements.txt
+
+
+python3 -m pip install -r requirements.txt
+nohup python3 server.py 
+
+#Configure Mongo
+
+## Install mongo
+
+https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-amazon/
+
+1. sudo vi "/etc/yum.repos.d/mongodb-org-8.0.repo"
+2. Write following text
+    [mongodb-org-8.0]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/amazon/2023/mongodb-org/8.0/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://pgp.mongodb.com/server-8.0.asc
+3. type :w! at bottom of the text
+4. type :q! to quite the file
+5. Run sudo yum install -y mongodb-org
+6. sudo service mongod start
+7. sudo service mongod status
+
+# Configure Mongo
+
+1. sudo nano /etc/mongod.conf
+2. change bindIp: 127.0.0.1 to ec2-54-167-94-248.compute-1.amazonaws.com (your public dns)
+3. sudo service mongod restart
+
+# Connect using Mongo Comnpass
+mongodb://xxx.compute-1.amazonaws.com:27017
+

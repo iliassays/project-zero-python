@@ -1,0 +1,32 @@
+# COMING Soon. Just few frequently used commands
+
+
+pip install --no-cache-dir --upgrade -r requirements.txt
+
+
+docker rm -f ibeam
+
+docker pull voyz/ibeam
+
+
+sudo docker run -v /home/ec2-user/temp/inputs:/srv/inputs --env-file env.list -p 5000:5000 voyz/ibeam
+
+https://3.79.183.15:5000/sso/Login?forwardTo=22&RL=1&ip2loc=on
+https://3.79.183.15:5000/v1/api/iserver/secdef/search
+
+
+pip install pytest pytest-asyncio mongomock
+
+python ping_server.py
+python server.py 
+
+Docker:
+docker-compose --build
+docker-compose up
+
+#Show mongo data
+docker exec -it mongodb /bin/bash
+mongo
+show dbs
+show collections
+db.your_collection_name.find().pretty()

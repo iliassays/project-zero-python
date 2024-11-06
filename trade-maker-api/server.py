@@ -13,6 +13,7 @@ from pydantic import BaseModel
 from ib_api import REST
 import logging
 import pytz
+from dotenv import load_dotenv
 
 class AlertItem(BaseModel):
     algo: str
@@ -78,10 +79,13 @@ class Settings(BaseSettings):
     timeformat: str = "client-2"
 
 # Initialize logging
+load_dotenv()  # Load environment variables from .env file
 logging.basicConfig(level=logging.INFO)
 
 settings = Settings()
+mongo_uri = os.getenv("MONGO_URI")
 client = pymongo.MongoClient("mongodb://mongo:27017")
+#client = pymongo.MongoClient('mongodb://localhost:27017/')
 db = client['project_zero']
 running_trade_collection = db['running_trades']
 trade_history_collection = db['trade_history']
