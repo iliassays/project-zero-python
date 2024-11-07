@@ -59,14 +59,14 @@ def send_error_email(server_url, error_message):
     except Exception as e:
         log_status(server_url, f"Failed to send email: {e}")
 
-def make_voice_call(error_message):
+def make_voice_call(error_message, server):
     if twilio_enabled:
         # Make a voice call using Twilio
         try:
             call = twilio_client.calls.create(
                 to=to_phone_number,
                 from_=twilio_phone_number,
-                twiml=f'<Response><Say>{error_message}</Say></Response>'
+                twiml=f'<Response><Say>Hello Ilias! TWS api gateway is down. Server: {server} {error_message}</Say></Response>'
             )
             log_status("Twilio", f"Voice call initiated successfully: {call.sid}")
         except Exception as e:
@@ -85,7 +85,7 @@ def ping_and_check_auth(ib, server_url):
         error_message = f"Error during ping or reauthentication: {e}"
         log_status(server_url, error_message)
         send_error_email(server_url, error_message)
-        make_voice_call(error_message)  # Make a voice call on error, if Twilio is enabled
+        make_voice_call(error_message, server)  # Make a voice call on error, if Twilio is enabled
 
 def main():
     sleep_interval = 60 * 5

@@ -3,4 +3,24 @@
 
 pip install --no-cache-dir --upgrade -r requirements.txt
 
-python ping_server.py
+# Run application
+sudo nohup python3 ping_server.py 
+## see logs
+sudo tail -f nohup.out
+
+# Setup supervisor
+
+sudo apt-get install supervisor
+
+1. Create a file /etc/supervisor/conf.d/tws-api-gateway-monitor_app.conf
+2. Write follwing text
+
+[program:trade_maker_api_app]
+command=/project_zero_python/ws-api-gateway-monitor/bootstrap.sh
+directory=/project_zero_python/ws-api-gateway-monitor
+autostart=true
+autorestart=true
+stderr_logfile=/project_zero_python/ws-api-gateway-monitor/ws-api-gateway-monitor.err.log
+stdout_logfile=/project_zero_python/ws-api-gateway-monitor/ws-api-gateway-monitor.out.log
+
+3. sudo systemctl restart supervisor

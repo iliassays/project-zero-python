@@ -2,8 +2,8 @@
 
 
 # Create environemnt
-python3 -m venv myenv
-source myenv/bin/activate
+python3 -m venv trade_maker_api_app
+source trade_maker_api_app/bin/activate
 
 pip install --no-cache-dir --upgrade -r requirements.txt
 
@@ -40,3 +40,19 @@ gpgkey=https://pgp.mongodb.com/server-8.0.asc
 # Connect using Mongo Comnpass
 mongodb://xxx.compute-1.amazonaws.com:27017
 
+# Setup supervisor
+
+sudo apt-get install supervisor
+
+1. Create a file /etc/supervisor/conf.d/trade_maker_api_app.conf
+2. Write follwing text
+
+[program:trade_maker_api_app]
+command=/project_zero_python/trade-maker-api/bootstrap.sh
+directory=/project_zero_python/trade-maker-api
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/trade-maker-api.err.log
+stdout_logfile=/var/log/trade-maker-api.out.log
+
+3. sudo systemctl restart supervisor
