@@ -1,15 +1,12 @@
 # COMING Soon. Just few frequently used commands
 
 
-pip install --no-cache-dir --upgrade -r requirements.txt
-
-
 docker rm -f ibeam
 
 docker pull voyz/ibeam
 
 
-sudo docker run -v /home/ec2-user/trade_maker/project-zero-python/tws-api-gateway/inputs:/srv/inputs --env-file env.list -p 5000:5000 voyz/ibeam
+sudo docker run -v /home/ec2-user/project-zero-python/tws-api-gateway/inputs:/srv/inputs --env-file env.list -p 5000:5000 voyz/ibeam
 
 https://3.79.183.15:5000/sso/Login?forwardTo=22&RL=1&ip2loc=on
 https://3.79.183.15:5000/v1/api/iserver/secdef/search

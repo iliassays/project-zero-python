@@ -1,0 +1,6 @@
+# COMING Soon. Just few frequently used commands
+
+
+pip install --no-cache-dir --upgrade -r requirements.txt
+
+python ping_server.py
