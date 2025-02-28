@@ -21,6 +21,9 @@ Docker:
 docker-compose --build
 docker-compose up
 
+Show logs
+docker logs -f --tail 50
+
 #Show mongo data
 docker exec -it mongodb /bin/bash
 mongo

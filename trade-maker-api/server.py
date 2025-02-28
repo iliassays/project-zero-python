@@ -14,6 +14,7 @@ from ib_api import REST
 import logging
 import pytz
 from dotenv import load_dotenv
+import os
 
 class AlertItem(BaseModel):
     algo: str
@@ -84,6 +85,7 @@ logging.basicConfig(level=logging.INFO)
 
 settings = Settings()
 mongo_uri = os.getenv("MONGO_URI")
+logging.info(mongo_uri)
 client = pymongo.MongoClient(mongo_uri)
 #client = pymongo.MongoClient('mongodb://localhost:27017/')
 db = client['project_zero']

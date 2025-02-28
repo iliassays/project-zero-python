@@ -1,5 +1,8 @@
 # COMING Soon. Just few frequently used commands
 
+# Create environemnt
+python3 -m venv tws-api-gateway-monitor-app
+source tws-api-gateway-monitor-app/bin/activate
 
 pip install --no-cache-dir --upgrade -r requirements.txt
 
@@ -12,7 +15,7 @@ sudo tail -f nohup.out
 
 sudo apt-get install supervisor
 
-1. Create a file /etc/supervisor/conf.d/tws-api-gateway-monitor_app.conf
+1. Create a file /etc/supervisor/conf.d/tws-api-gateway-monitor-app.conf
 2. Write follwing text
 
 [program:trade_maker_api_app]
